@@ -95,42 +95,4 @@ int main(int argc, char* argv[])
 		}
 		image = cvLoadImage(filename, 1);
 	}
-	/*if (x + width < image->width)
-	{
-	cvSetImageROI(image, cvRect(x, y, width, height));
-	IplImage *sub_img = cvCreateImage(cvGetSize(image),
-	image->depth,
-	image->nChannels);
-	cvCopy(image, sub_img, NULL);
-
-
-	cvShowImage("ROI", sub_img);
-	}
-	else
-	{
-	cvSetImageROI(image, cvRect(x, y, width, height));
-	IplImage *first = cvCreateImage(cvGetSize(image),
-	image->depth,
-	image->nChannels);
-	cvCopy(image, first, NULL);
-	cvSetImageROI(image, cvRect(0, y, (x + width) - image->width, height));
-	IplImage *second = cvCreateImage(cvGetSize(image),
-	image->depth,
-	image->nChannels);
-	cvCopy(image, second, NULL);
-
-	cvShowImage("ROI", first);
-	cvShowImage("IOR", second);
-
-	cv::Mat firstPath = cv::cvarrToMat(first);
-	cv::Mat secondPath = cv::cvarrToMat(second);
-	Mat resultPath;
-
-	hconcat(firstPath, secondPath, resultPath);
-	IplImage copy = resultPath;
-	IplImage* result = &copy;
-	cvShowImage("Result", result);
-	}
-
-	cvResetImageROI(image);*/
 }
