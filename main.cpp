@@ -5,9 +5,18 @@
 #include <opencv/highgui.h>
 #include <stdlib.h>
 #include <stdio.h>
-
 #include <vector>
 #include <iostream>
+
+#include <QtCore>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv/cv.h>
+#include <cv.h>
+#include <highgui.h>
+#include <stdlib.h>
+#include <stdio.h>
 using namespace cv;
 int main(int argc, char *argv[])
 {
@@ -30,11 +39,10 @@ int main(int argc, char *argv[])
     int height = 200;
     while (true)
     {
-        /*cvRectangle(image, cvPoint(x, y), cvPoint(x + width, y + height), cvScalar(200), 1, 8);
-
+        cvRectangle(image, cvPoint(x, y), cvPoint(x + width, y + height), cvScalar(200), 1, 8);
         if (x + width > image->width)
             cvRectangle(image, cvPoint(0, y), cvPoint((x + width) - image->width, y + height), cvScalar(200), 1, 8);
-*/
+
         cvShowImage("original", image);
         if (x + width < image->width)
         {
@@ -76,14 +84,14 @@ int main(int argc, char *argv[])
         }
 
         cvResetImageROI(image);
-        int key=cvWaitKey(0);
-        if (key == 65361)//65361 - влево
+        char key=cvWaitKey(0);
+        if (key == 81)//влево
         {
             x--;
             if (x < 0)
                 x += image->width;
         }
-        if (key == 65363)//65363 - вправо
+        if (key == 83)//вправо
         {
             x++;
             if (x >= image->width)
