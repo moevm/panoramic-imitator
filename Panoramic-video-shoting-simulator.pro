@@ -17,4 +17,10 @@ TEMPLATE = app
 INCLUDEPATH += /usr/local/include/opencv
 LIBS += -L/usr/local/lib -lopencv_core -lopencv_imgcodecs -lopencv_highgui -lopencv_imgproc
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    image.cpp \
+    panoramic_image.cpp
+
+HEADERS += \
+    image.h \
+    panoramic_image.h
