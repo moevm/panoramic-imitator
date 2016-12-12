@@ -1,4 +1,4 @@
-#include "image.h"
+#include "Image.h"
 #include "stb_image.h"
 #include "stdlib.h"
 void Image::LoadImage(char *filename)

@@ -1,4 +1,4 @@
-#include "panoramic_image_widget.h"
+#include "PanoramicImageWidget.h"
 #include <QDebug>
 #include <QMouseEvent>
 #include <GL/glut.h>
@@ -14,18 +14,18 @@ void PanoramicImageWidget::sphere(double r, int nx, int ny)
         glBegin(GL_QUAD_STRIP);
         for (ix = 0; ix <= nx+1; ++ix)
         {
-            x = r * sin(iy * 3.1415 / ny) * cos(2 * ix * 3.1415 / nx);
-            y = r * sin(iy * 3.1415 / ny) * sin(2 * ix * 3.1415 / nx);
-            z = r * cos(iy * 3.1415 / ny);
+            x = r * sin(iy * M_PI/ ny) * cos(2 * ix * M_PI / nx);
+            y = r * sin(iy * M_PI / ny) * sin(2 * ix * M_PI / nx);
+            z = r * cos(iy * M_PI / ny);
             //нормаль направлена от центра
             glNormal3f(x, y, z);
             glTexCoord2f((double)ix / (double)nx, (double)iy / (double)ny);
             glVertex3f(x, y, z);
-            x = r * sin((iy + 1) * 3.1415 / ny) *
-            cos(2 * ix * 3.1415 / nx);
-            y = r * sin((iy + 1) * 3.1415 / ny) *
-            sin(2 * ix * 3.1415 / nx);
-            z = r * cos((iy + 1) * 3.1415 / ny);
+            x = r * sin((iy + 1) * M_PI / ny) *
+                cos(2 * ix * M_PI / nx);
+            y = r * sin((iy + 1) * M_PI / ny) *
+                sin(2 * ix * M_PI / nx);
+            z = r * cos((iy + 1) * M_PI / ny);
             glNormal3f(x, y, z);
             glTexCoord2f((double)ix / (double)nx, (double)(iy + 1) / (double)ny);
             glVertex3f(x, y, z);
@@ -61,8 +61,8 @@ void PanoramicImageWidget::paintGL()
     sphere(1.5, 100, 100);
     glLoadIdentity();
     //gluPerspective(60.0, 1, 0, 100.0);
-    double phi=yRot*3.1415/180;
-    double teta=(90-xRot)*3.1415/180;
+    double phi=yRot*M_PI/180;
+    double teta=(90-xRot)*M_PI/180;
     double x0=0.5*sin(teta)*cos(phi);
     double y0=0.5*sin(teta)*sin(phi);
     double z0=0.5*cos(teta);
@@ -70,8 +70,8 @@ void PanoramicImageWidget::paintGL()
     double x=-y0;
     double y=z0;
     double z=-x0;
-    double phi_n=phi+3.1415;
-    double teta_n=3.1415/2-teta;
+    double phi_n=phi+M_PI;
+    double teta_n=M_PI/2-teta;
     double x0_n=0.5*sin(teta_n)*cos(phi_n);
     double y0_n=0.5*sin(teta_n)*sin(phi_n);
     double z0_n=0.5*cos(teta_n);
@@ -90,15 +90,15 @@ void PanoramicImageWidget::resizeGL(int w, int h)
 void PanoramicImageWidget::rotate_up()
 {
     xRot++;
-    if(xRot>89)
-        xRot=89;
+    if(xRot>180)
+        xRot=180;
     this->update();
 }
 void PanoramicImageWidget::rotate_down()
 {
     xRot--;
-    if(xRot<-89)
-        xRot=-89;
+    if(xRot<0)
+        xRot=0;
     this->update();
 }
 void PanoramicImageWidget::rotate_left()
@@ -139,4 +139,17 @@ void PanoramicImageWidget::keyPressSlot(QKeyEvent* key)
 void PanoramicImageWidget::LoadImage(char *filename)
 {
     Image::LoadImage(filename);
+}
+void PanoramicImageWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        this->setFocus();
+}
+GLfloat PanoramicImageWidget::get_xRot()
+{
+    return xRot;
+}
+GLfloat PanoramicImageWidget::get_yRot()
+{
+    return yRot;
 }

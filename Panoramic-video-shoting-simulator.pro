@@ -14,14 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    panoramic_image_widget.cpp \
     stb_image.c \
-    image.cpp
+    Image.cpp \
+    PanoramicImageWidget.cpp
 
 HEADERS  += mainwindow.h \
-    panoramic_image_widget.h \
     stb_image.h \
-    image.h
+    Image.h \
+    PanoramicImageWidget.h
 
 FORMS    += mainwindow.ui
 

@@ -3,7 +3,7 @@
 
 #include <QGLWidget>
 #include <QtGui>
-#include "image.h"
+#include "Image.h"
 
 class PanoramicImageWidget:public QGLWidget, public Image
 {
@@ -19,9 +19,12 @@ private:
     void rotate_left();
     void rotate_right();
     void sphere(double r, int nx, int ny);
+    void mousePressEvent(QMouseEvent *event);
 public:
     PanoramicImageWidget(QWidget *parent=0);
     void LoadImage(char *filename);
+    GLfloat get_xRot();
+    GLfloat get_yRot();
 public slots:
     void keyPressSlot(QKeyEvent* key);
 };
