@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,16 +13,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    panoramic_image_widget.cpp \
-    stb_image.c \
-    image.cpp
+        mainwindow.cpp
 
-HEADERS  += mainwindow.h \
-    panoramic_image_widget.h \
-    stb_image.h \
-    image.h
+HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
-
-LIBS +=-lglut -lGL -lGLU
