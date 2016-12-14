@@ -9,17 +9,16 @@ void PanoramicImageWidget::sphere(double r, int nx, int ny)
 {
     int ix, iy;
     double x, y, z;
-    for (iy=0; iy < ny; ++iy)
+    for (iy=0; iy < ny; iy++)
     {
-        glBegin(GL_QUAD_STRIP);
-        for (ix = 0; ix <= nx+1; ++ix)
+        for (ix = 0; ix <nx; ix+=1)
         {
+            glBegin(GL_QUAD_STRIP);
             x = r * sin(iy * M_PI/ ny) * cos(2 * ix * M_PI / nx);
             y = r * sin(iy * M_PI / ny) * sin(2 * ix * M_PI / nx);
             z = r * cos(iy * M_PI / ny);
-            //нормаль направлена от центра
             glNormal3f(x, y, z);
-            glTexCoord2f((double)ix / (double)nx, (double)iy / (double)ny);
+            glTexCoord2f((double)(nx-ix) / (double)nx, (double)iy / (double)ny);
             glVertex3f(x, y, z);
             x = r * sin((iy + 1) * M_PI / ny) *
                 cos(2 * ix * M_PI / nx);
@@ -27,10 +26,24 @@ void PanoramicImageWidget::sphere(double r, int nx, int ny)
                 sin(2 * ix * M_PI / nx);
             z = r * cos((iy + 1) * M_PI / ny);
             glNormal3f(x, y, z);
-            glTexCoord2f((double)ix / (double)nx, (double)(iy + 1) / (double)ny);
+            glTexCoord2f((double)(nx-ix) / (double)nx, (double)(iy + 1) / (double)ny);
             glVertex3f(x, y, z);
+            x = r * sin(iy * M_PI/ ny) * cos(2 * (ix+1) * M_PI / nx);
+            y = r * sin(iy * M_PI / ny) * sin(2 * (ix+1) * M_PI / nx);
+            z = r * cos(iy * M_PI / ny);
+            glNormal3f(x, y, z);
+            glTexCoord2f((double)(nx-ix-1) / (double)nx, (double)iy / (double)ny);
+            glVertex3f(x, y, z);
+            x = r * sin((iy + 1) * M_PI / ny) *
+                cos(2 * (ix+1) * M_PI / nx);
+            y = r * sin((iy + 1) * M_PI / ny) *
+                sin(2 * (ix+1) * M_PI / nx);
+            z = r * cos((iy + 1) * M_PI / ny);
+            glNormal3f(x, y, z);
+            glTexCoord2f((double)(nx-ix-1) / (double)nx, (double)(iy + 1) / (double)ny);
+            glVertex3f(x, y, z);
+            glEnd();
         }
-        glEnd();
     }
 }
 PanoramicImageWidget::PanoramicImageWidget(QWidget *parent): QGLWidget(parent)
@@ -47,7 +60,6 @@ void PanoramicImageWidget::paintGL()
     glMatrixMode(GL_MODELVIEW);
     glEnable(GL_DEPTH_TEST);
 
-    glEnable(GL_DEPTH_TEST);
     glEnable(GL_TEXTURE_2D);
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
