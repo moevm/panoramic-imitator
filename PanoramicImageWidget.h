@@ -22,7 +22,6 @@ private:
     void mousePressEvent(QMouseEvent *event);
 public:
     PanoramicImageWidget(QWidget *parent=0);
-    void LoadImage(char *filename);
     GLfloat get_xRot();
     GLfloat get_yRot();
 public slots:

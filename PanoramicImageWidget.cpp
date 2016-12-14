@@ -148,10 +148,6 @@ void PanoramicImageWidget::keyPressSlot(QKeyEvent* key)
     break;
     }
 }
-void PanoramicImageWidget::LoadImage(char *filename)
-{
-    Image::LoadImage(filename);
-}
 void PanoramicImageWidget::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
