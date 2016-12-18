@@ -72,7 +72,6 @@ void PanoramicImageWidget::paintGL()
                  image);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    sphere(1.5, 100, 100);
     glLoadIdentity();
     //gluPerspective(60.0, 1, 0, 100.0);
     double phi=yRot*M_PI/180;
@@ -96,6 +95,7 @@ void PanoramicImageWidget::paintGL()
     gluLookAt(x, y, z, 2*x, 2*y, 2*z, x_n, y_n, z_n);
     //gluLookAt(0, 0, -0.5, 0, 0, -1, 0, 1, 0);
     glRotatef(-90, 1, 0, 0);
+    sphere(1.5, 100, 100);
 }
 void PanoramicImageWidget::resizeGL(int w, int h)
 {
