@@ -16,13 +16,19 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     stb_image.c \
     Image.cpp \
-    PanoramicImageWidget.cpp
+    PanoramicImageWidget.cpp \
+    protobuf/panoramic-imitator-message.pb.cc \
+    getpbdata.cpp
 
 HEADERS  += mainwindow.h \
     stb_image.h \
     Image.h \
-    PanoramicImageWidget.h
+    PanoramicImageWidget.h \
+    protobuf/panoramic-imitator-message.pb.h \
+    getpbdata.h \
+    data_structures.h
 
 FORMS    += mainwindow.ui
 
-LIBS +=-lglut -lGL -lGLU
+LIBS +=-lglut -lGL -lGLU \
+     -lprotobuf

@@ -4,16 +4,20 @@
 #include <QGLWidget>
 #include <QtGui>
 #include "Image.h"
+#include "getpbdata.h"
 
 class PanoramicImageWidget:public QGLWidget, public Image
 {
 Q_OBJECT
 private:
+    GetPBData data;
+
     GLfloat xRot;//поворот камеры вверх и вних
     GLfloat yRot;//поворот камеры влево и вправо
     void initializeGL();
     void paintGL();
     void resizeGL(int w, int h);
+    void showPanorama(Angles angles, Frame frame);
     void rotate_up();
     void rotate_down();
     void rotate_left();

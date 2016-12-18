@@ -5,6 +5,8 @@
 #include "stb_image.h"
 #include <stdio.h>
 #include <math.h>
+#include "getpbdata.h"
+
 void PanoramicImageWidget::sphere(double r, int nx, int ny)
 {
     int ix, iy;
@@ -132,20 +134,21 @@ void PanoramicImageWidget::keyPressSlot(QKeyEvent* key)
     switch (key->key())
     {
     case Qt::Key_Up:
-       rotate_up();
-    break;
-
+        rotate_up();
+        break;
     case Qt::Key_Down:
-       rotate_down();
-    break;
-
+        rotate_down();
+        break;
     case Qt::Key_Left:
-      rotate_left();
-    break;
-
+        rotate_left();
+        break;
     case Qt::Key_Right:
-       rotate_right();
-    break;
+        rotate_right();
+        break;
+    case Qt::Key_Space:
+        data.readData();
+        showPanorama(data.getAngles(), data.getFrame());
+        break;
     }
 }
 void PanoramicImageWidget::mousePressEvent(QMouseEvent *event)
@@ -160,4 +163,10 @@ GLfloat PanoramicImageWidget::get_xRot()
 GLfloat PanoramicImageWidget::get_yRot()
 {
     return yRot;
+}
+void PanoramicImageWidget::showPanorama(Angles angles, Frame frame)
+{
+    xRot = (GLfloat)angles.horAngle;
+    yRot = (GLfloat)angles.vertAngle;
+    this->update();
 }
