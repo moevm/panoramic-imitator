@@ -93,7 +93,6 @@ void PanoramicImage::paintGL()
     double y_n=z0_n;
     double z_n=-x0_n;
     gluLookAt(x, y, z, 2*x, 2*y, 2*z, x_n, y_n, z_n);
-    //gluLookAt(0, 0, -0.5, 0, 0, -1, 0, 1, 0);
     glRotatef(-90, 1, 0, 0);
     sphere(1.5, 100, 100);
 }
