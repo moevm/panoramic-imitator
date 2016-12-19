@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtGui>
+#include <QPushButton>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,7 @@ private:
     Ui::MainWindow *ui;
 signals:
     void keyPressSignal(QKeyEvent* key);
+private slots:
 };
 
 #endif // MAINWINDOW_H

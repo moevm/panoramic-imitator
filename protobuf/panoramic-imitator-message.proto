@@ -2,9 +2,6 @@ package panoramicImitator;
 
 message Message
 {
-	required double horAngle = 1;
-	required double vertAngle = 2;
-
-	optional int32 frameHeight = 3;
-	optional int32 frameWidth = 4;
+	optional double horAngle = 1;
+	optional double vertAngle = 2;
 }

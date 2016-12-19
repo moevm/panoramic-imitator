@@ -1,12 +1,12 @@
-#ifndef PANORAMICIMAGEWIDGET_H
-#define PANORAMICIMAGEWIDGET_H
+#ifndef PANORAMICIMAGE_H
+#define PANORAMICIMAGE_H
 
 #include <QGLWidget>
 #include <QtGui>
 #include "Image.h"
 #include "getpbdata.h"
 
-class PanoramicImageWidget:public QGLWidget, public Image
+class PanoramicImage:public QGLWidget, public Image
 {
 Q_OBJECT
 private:
@@ -17,7 +17,7 @@ private:
     void initializeGL();
     void paintGL();
     void resizeGL(int w, int h);
-    void showPanorama(Angles angles, Frame frame);
+    void showPanorama();
     void rotate_up();
     void rotate_down();
     void rotate_left();
@@ -25,11 +25,14 @@ private:
     void sphere(double r, int nx, int ny);
     void mousePressEvent(QMouseEvent *event);
 public:
-    PanoramicImageWidget(QWidget *parent=0);
+    PanoramicImage(QWidget *parent=0);
     GLfloat get_xRot();
     GLfloat get_yRot();
+    void set_xRot(QString);
+    void set_yRot(QString);
 public slots:
     void keyPressSlot(QKeyEvent* key);
+    void getPBDataAndShowPanorama();
 };
 
-#endif // PANORAMICIMAGEWIDGET_H
+#endif // PANORAMICIMAGE_H

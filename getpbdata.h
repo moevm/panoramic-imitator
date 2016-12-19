@@ -11,14 +11,14 @@ class GetPBData
 public:
     GetPBData();
     bool readData();
+    bool writeData();
     Angles getAngles();
-    Frame getFrame();
-
+    void setAngles(Angles angles);
 private:
     bool parseMSGFromFile();
+    void anglesShortener();
     panoramicImitator::Message message;
     Angles angles;
-    Frame frame;
 };
 
 #endif // GETPBDATA_H

@@ -20,7 +20,7 @@
    <number>-1</number>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="PanoramicImageWidget" name="widget" native="true">
+   <widget class="PanoramicImage" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -81,9 +81,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>PanoramicImageWidget</class>
+   <class>PanoramicImage</class>
    <extends>QWidget</extends>
-   <header>PanoramicImageWidget.h</header>
+   <header>PanoramicImage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

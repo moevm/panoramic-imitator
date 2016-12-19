@@ -1,4 +1,4 @@
-#include "PanoramicImageWidget.h"
+#include "PanoramicImage.h"
 #include <QDebug>
 #include <QMouseEvent>
 #include <GL/glut.h>
@@ -7,7 +7,7 @@
 #include <math.h>
 #include "getpbdata.h"
 
-void PanoramicImageWidget::sphere(double r, int nx, int ny)
+void PanoramicImage::sphere(double r, int nx, int ny)
 {
     int ix, iy;
     double x, y, z;
@@ -48,15 +48,15 @@ void PanoramicImageWidget::sphere(double r, int nx, int ny)
         }
     }
 }
-PanoramicImageWidget::PanoramicImageWidget(QWidget *parent): QGLWidget(parent)
+PanoramicImage::PanoramicImage(QWidget *parent): QGLWidget(parent)
 {
     xRot=yRot=0;
 }
-void PanoramicImageWidget::initializeGL()
+void PanoramicImage::initializeGL()
 {
     glClearColor(0, 0, 0, 1);
 }
-void PanoramicImageWidget::paintGL()
+void PanoramicImage::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -97,39 +97,49 @@ void PanoramicImageWidget::paintGL()
     glRotatef(-90, 1, 0, 0);
     sphere(1.5, 100, 100);
 }
-void PanoramicImageWidget::resizeGL(int w, int h)
+void PanoramicImage::resizeGL(int w, int h)
 {
     glViewport(0, 0, h, h);
 }
-void PanoramicImageWidget::rotate_up()
+void PanoramicImage::rotate_up()
 {
     xRot++;
     if(xRot>180)
         xRot=180;
     this->update();
 }
-void PanoramicImageWidget::rotate_down()
+void PanoramicImage::rotate_down()
 {
     xRot--;
     if(xRot<0)
         xRot=0;
     this->update();
 }
-void PanoramicImageWidget::rotate_left()
+void PanoramicImage::rotate_left()
 {
     yRot++;
     while(yRot>180)
         yRot-=360;
     this->update();
 }
-void PanoramicImageWidget::rotate_right()
+void PanoramicImage::rotate_right()
 {
     yRot--;
     while(yRot<-180)
         yRot+=360;
     this->update();
 }
-void PanoramicImageWidget::keyPressSlot(QKeyEvent* key)
+void PanoramicImage::set_xRot(QString rot)
+{
+    xRot = rot.toDouble();
+}
+
+void PanoramicImage::set_yRot(QString rot)
+{
+    yRot = rot.toDouble();
+}
+
+void PanoramicImage::keyPressSlot(QKeyEvent* key)
 {
     switch (key->key())
     {
@@ -146,27 +156,37 @@ void PanoramicImageWidget::keyPressSlot(QKeyEvent* key)
         rotate_right();
         break;
     case Qt::Key_Space:
-        data.readData();
-        showPanorama(data.getAngles(), data.getFrame());
+        getPBDataAndShowPanorama();
         break;
     }
 }
-void PanoramicImageWidget::mousePressEvent(QMouseEvent *event)
+void PanoramicImage::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
         this->setFocus();
 }
-GLfloat PanoramicImageWidget::get_xRot()
+GLfloat PanoramicImage::get_xRot()
 {
     return xRot;
 }
-GLfloat PanoramicImageWidget::get_yRot()
+GLfloat PanoramicImage::get_yRot()
 {
     return yRot;
 }
-void PanoramicImageWidget::showPanorama(Angles angles, Frame frame)
+void PanoramicImage::showPanorama()
 {
-    xRot = (GLfloat)angles.horAngle;
-    yRot = (GLfloat)angles.vertAngle;
+    xRot = (GLfloat)data.getAngles().horAngle;
+    yRot = (GLfloat)data.getAngles().vertAngle;
     this->update();
+}
+void PanoramicImage::getPBDataAndShowPanorama()
+{
+    Angles a;
+    a.horAngle = xRot;
+    a.vertAngle = yRot;
+
+    data.setAngles(a);
+    data.writeData();
+    data.readData();
+    showPanorama();
 }

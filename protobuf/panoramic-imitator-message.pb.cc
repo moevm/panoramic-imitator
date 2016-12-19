@@ -37,18 +37,14 @@ const ::google::protobuf::uint32* protobuf_Offsets_panoramic_2dimitator_2dmessag
     ~0u,  // no _oneof_case_
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, horangle_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, vertangle_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, frameheight_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Message, framewidth_),
     0,
     1,
-    2,
-    3,
   };
   return offsets;
 }
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
-  { 0, 8, sizeof(Message)},
+  { 0, 6, sizeof(Message)},
 };
 
 static const ::google::protobuf::internal::DefaultInstanceData file_default_instances[] = {
@@ -98,12 +94,11 @@ void protobuf_AddDesc_panoramic_2dimitator_2dmessage_2eproto_impl() {
   protobuf_InitDefaults_panoramic_2dimitator_2dmessage_2eproto();
   static const char descriptor[] = {
       "\n panoramic-imitator-message.proto\022\021pano"
-      "ramicImitator\"W\n\007Message\022\020\n\010horAngle\030\001 \002"
-      "(\001\022\021\n\tvertAngle\030\002 \002(\001\022\023\n\013frameHeight\030\003 \001"
-      "(\005\022\022\n\nframeWidth\030\004 \001(\005"
+      "ramicImitator\".\n\007Message\022\020\n\010horAngle\030\001 \001"
+      "(\001\022\021\n\tvertAngle\030\002 \001(\001"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 142);
+      descriptor, 101);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "panoramic-imitator-message.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_panoramic_2dimitator_2dmessage_2eproto);
@@ -126,8 +121,6 @@ struct StaticDescriptorInitializer_panoramic_2dimitator_2dmessage_2eproto {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Message::kHorAngleFieldNumber;
 const int Message::kVertAngleFieldNumber;
-const int Message::kFrameHeightFieldNumber;
-const int Message::kFrameWidthFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Message::Message()
@@ -145,15 +138,15 @@ Message::Message(const Message& from)
       _cached_size_(0) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&horangle_, &from.horangle_,
-    reinterpret_cast<char*>(&framewidth_) -
-    reinterpret_cast<char*>(&horangle_) + sizeof(framewidth_));
+    reinterpret_cast<char*>(&vertangle_) -
+    reinterpret_cast<char*>(&horangle_) + sizeof(vertangle_));
   // @@protoc_insertion_point(copy_constructor:panoramicImitator.Message)
 }
 
 void Message::SharedCtor() {
   _cached_size_ = 0;
-  ::memset(&horangle_, 0, reinterpret_cast<char*>(&framewidth_) -
-    reinterpret_cast<char*>(&horangle_) + sizeof(framewidth_));
+  ::memset(&horangle_, 0, reinterpret_cast<char*>(&vertangle_) -
+    reinterpret_cast<char*>(&horangle_) + sizeof(vertangle_));
 }
 
 Message::~Message() {
@@ -189,9 +182,9 @@ Message* Message::New(::google::protobuf::Arena* arena) const {
 
 void Message::Clear() {
 // @@protoc_insertion_point(message_clear_start:panoramicImitator.Message)
-  if (_has_bits_[0 / 32] & 15u) {
-    ::memset(&horangle_, 0, reinterpret_cast<char*>(&framewidth_) -
-      reinterpret_cast<char*>(&horangle_) + sizeof(framewidth_));
+  if (_has_bits_[0 / 32] & 3u) {
+    ::memset(&horangle_, 0, reinterpret_cast<char*>(&vertangle_) -
+      reinterpret_cast<char*>(&horangle_) + sizeof(vertangle_));
   }
   _has_bits_.Clear();
   _internal_metadata_.Clear();
@@ -207,7 +200,7 @@ bool Message::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required double horAngle = 1;
+      // optional double horAngle = 1;
       case 1: {
         if (tag == 9u) {
           set_has_horangle();
@@ -220,39 +213,13 @@ bool Message::MergePartialFromCodedStream(
         break;
       }
 
-      // required double vertAngle = 2;
+      // optional double vertAngle = 2;
       case 2: {
         if (tag == 17u) {
           set_has_vertangle();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
                  input, &vertangle_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // optional int32 frameHeight = 3;
-      case 3: {
-        if (tag == 24u) {
-          set_has_frameheight();
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &frameheight_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // optional int32 frameWidth = 4;
-      case 4: {
-        if (tag == 32u) {
-          set_has_framewidth();
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &framewidth_)));
         } else {
           goto handle_unusual;
         }
@@ -284,24 +251,14 @@ failure:
 void Message::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:panoramicImitator.Message)
-  // required double horAngle = 1;
+  // optional double horAngle = 1;
   if (has_horangle()) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->horangle(), output);
   }
 
-  // required double vertAngle = 2;
+  // optional double vertAngle = 2;
   if (has_vertangle()) {
     ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->vertangle(), output);
-  }
-
-  // optional int32 frameHeight = 3;
-  if (has_frameheight()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->frameheight(), output);
-  }
-
-  // optional int32 frameWidth = 4;
-  if (has_framewidth()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->framewidth(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -315,24 +272,14 @@ void Message::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
   // @@protoc_insertion_point(serialize_to_array_start:panoramicImitator.Message)
-  // required double horAngle = 1;
+  // optional double horAngle = 1;
   if (has_horangle()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->horangle(), target);
   }
 
-  // required double vertAngle = 2;
+  // optional double vertAngle = 2;
   if (has_vertangle()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->vertangle(), target);
-  }
-
-  // optional int32 frameHeight = 3;
-  if (has_frameheight()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->frameheight(), target);
-  }
-
-  // optional int32 frameWidth = 4;
-  if (has_framewidth()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->framewidth(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -343,22 +290,6 @@ void Message::SerializeWithCachedSizes(
   return target;
 }
 
-size_t Message::RequiredFieldsByteSizeFallback() const {
-// @@protoc_insertion_point(required_fields_byte_size_fallback_start:panoramicImitator.Message)
-  size_t total_size = 0;
-
-  if (has_horangle()) {
-    // required double horAngle = 1;
-    total_size += 1 + 8;
-  }
-
-  if (has_vertangle()) {
-    // required double vertAngle = 2;
-    total_size += 1 + 8;
-  }
-
-  return total_size;
-}
 size_t Message::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:panoramicImitator.Message)
   size_t total_size = 0;
@@ -368,29 +299,15 @@ size_t Message::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         unknown_fields());
   }
-  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
-    // required double horAngle = 1;
-    total_size += 1 + 8;
-
-    // required double vertAngle = 2;
-    total_size += 1 + 8;
-
-  } else {
-    total_size += RequiredFieldsByteSizeFallback();
-  }
-  if (_has_bits_[0 / 32] & 12u) {
-    // optional int32 frameHeight = 3;
-    if (has_frameheight()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->frameheight());
+  if (_has_bits_[0 / 32] & 3u) {
+    // optional double horAngle = 1;
+    if (has_horangle()) {
+      total_size += 1 + 8;
     }
 
-    // optional int32 frameWidth = 4;
-    if (has_framewidth()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::Int32Size(
-          this->framewidth());
+    // optional double vertAngle = 2;
+    if (has_vertangle()) {
+      total_size += 1 + 8;
     }
 
   }
@@ -420,18 +337,12 @@ void Message::MergeFrom(const Message& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:panoramicImitator.Message)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  if (from._has_bits_[0 / 32] & 15u) {
+  if (from._has_bits_[0 / 32] & 3u) {
     if (from.has_horangle()) {
       set_horangle(from.horangle());
     }
     if (from.has_vertangle()) {
       set_vertangle(from.vertangle());
-    }
-    if (from.has_frameheight()) {
-      set_frameheight(from.frameheight());
-    }
-    if (from.has_framewidth()) {
-      set_framewidth(from.framewidth());
     }
   }
 }
@@ -451,7 +362,6 @@ void Message::CopyFrom(const Message& from) {
 }
 
 bool Message::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
   return true;
 }
 
@@ -462,8 +372,6 @@ void Message::Swap(Message* other) {
 void Message::InternalSwap(Message* other) {
   std::swap(horangle_, other->horangle_);
   std::swap(vertangle_, other->vertangle_);
-  std::swap(frameheight_, other->frameheight_);
-  std::swap(framewidth_, other->framewidth_);
   std::swap(_has_bits_[0], other->_has_bits_[0]);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   std::swap(_cached_size_, other->_cached_size_);
@@ -477,7 +385,7 @@ void Message::InternalSwap(Message* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Message
 
-// required double horAngle = 1;
+// optional double horAngle = 1;
 bool Message::has_horangle() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -501,7 +409,7 @@ void Message::set_horangle(double value) {
   // @@protoc_insertion_point(field_set:panoramicImitator.Message.horAngle)
 }
 
-// required double vertAngle = 2;
+// optional double vertAngle = 2;
 bool Message::has_vertangle() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -523,54 +431,6 @@ void Message::set_vertangle(double value) {
   set_has_vertangle();
   vertangle_ = value;
   // @@protoc_insertion_point(field_set:panoramicImitator.Message.vertAngle)
-}
-
-// optional int32 frameHeight = 3;
-bool Message::has_frameheight() const {
-  return (_has_bits_[0] & 0x00000004u) != 0;
-}
-void Message::set_has_frameheight() {
-  _has_bits_[0] |= 0x00000004u;
-}
-void Message::clear_has_frameheight() {
-  _has_bits_[0] &= ~0x00000004u;
-}
-void Message::clear_frameheight() {
-  frameheight_ = 0;
-  clear_has_frameheight();
-}
-::google::protobuf::int32 Message::frameheight() const {
-  // @@protoc_insertion_point(field_get:panoramicImitator.Message.frameHeight)
-  return frameheight_;
-}
-void Message::set_frameheight(::google::protobuf::int32 value) {
-  set_has_frameheight();
-  frameheight_ = value;
-  // @@protoc_insertion_point(field_set:panoramicImitator.Message.frameHeight)
-}
-
-// optional int32 frameWidth = 4;
-bool Message::has_framewidth() const {
-  return (_has_bits_[0] & 0x00000008u) != 0;
-}
-void Message::set_has_framewidth() {
-  _has_bits_[0] |= 0x00000008u;
-}
-void Message::clear_has_framewidth() {
-  _has_bits_[0] &= ~0x00000008u;
-}
-void Message::clear_framewidth() {
-  framewidth_ = 0;
-  clear_has_framewidth();
-}
-::google::protobuf::int32 Message::framewidth() const {
-  // @@protoc_insertion_point(field_get:panoramicImitator.Message.frameWidth)
-  return framewidth_;
-}
-void Message::set_framewidth(::google::protobuf::int32 value) {
-  set_has_framewidth();
-  framewidth_ = value;
-  // @@protoc_insertion_point(field_set:panoramicImitator.Message.frameWidth)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

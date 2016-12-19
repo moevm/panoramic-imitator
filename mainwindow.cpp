@@ -24,6 +24,8 @@ void MainWindow::keyPressEvent(QKeyEvent* key)
     char xRot[5], yRot[5];
     sprintf(xRot, "%i", (int) ui->widget->get_xRot());
     sprintf(yRot, "%i", (int) ui->widget->get_yRot());
+    ui->widget->set_xRot(ui->xRot_textbox->text());
+    ui->widget->set_yRot(ui->yRot_textbox->text());
     ui->xRot_textbox->setText(xRot);
     ui->yRot_textbox->setText(yRot);
 }
