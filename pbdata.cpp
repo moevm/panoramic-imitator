@@ -1,19 +1,19 @@
-#include "getpbdata.h"
+#include "pbdata.h"
 
 using namespace std;
 
-GetPBData::GetPBData()
+PBData::PBData()
 {
     angles.horAngle = 0;
     angles.vertAngle = 0;
 }
-void GetPBData::setAngles(Angles angles)
+void PBData::setAngles(Angles angles)
 {
     this->angles.horAngle = angles.horAngle;
     this->angles.vertAngle = angles.vertAngle;
 }
 
-bool GetPBData::parseMSGFromFile()
+bool PBData::parseMSGFromFile()
 {
     fstream input("angles", ios::in | ios::binary);
     if (!message.ParseFromIstream(&input))
@@ -24,7 +24,7 @@ bool GetPBData::parseMSGFromFile()
     return 0;
 }
 
-bool GetPBData::readData()
+bool PBData::readData()
 {
     if (!parseMSGFromFile())
     {
@@ -34,7 +34,7 @@ bool GetPBData::readData()
     }
     return 1;
 }
-bool GetPBData::writeData()
+bool PBData::writeData()
 {
     message.set_horangle(angles.horAngle);
     message.set_vertangle(angles.vertAngle);
@@ -47,7 +47,7 @@ bool GetPBData::writeData()
     }
     return 0;
 }
-void GetPBData::anglesShortener()
+void PBData::anglesShortener()
 {
     if (angles.vertAngle < -360.0 || angles.vertAngle > 360.0)
         angles.vertAngle = angles.vertAngle - (angles.vertAngle / 360.0) * 360.0;
@@ -55,7 +55,7 @@ void GetPBData::anglesShortener()
         angles.horAngle = angles.horAngle - (angles.horAngle / 360.0) * 360.0;
 }
 
-Angles GetPBData::getAngles()
+Angles PBData::getAngles()
 {
     anglesShortener();
     return angles;

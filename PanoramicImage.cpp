@@ -5,7 +5,7 @@
 #include "stb_image.h"
 #include <stdio.h>
 #include <math.h>
-#include "getpbdata.h"
+#include "pbdata.h"
 
 void PanoramicImage::sphere(double r, int nx, int ny)
 {

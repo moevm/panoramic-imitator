@@ -18,15 +18,15 @@ SOURCES += main.cpp\
     Image.cpp \
     PanoramicImage.cpp \
     protobuf/panoramic-imitator-message.pb.cc \
-    getpbdata.cpp
+    pbdata.cpp
 
 HEADERS  += mainwindow.h \
     stb_image.h \
     Image.h \
     PanoramicImage.h \
     protobuf/panoramic-imitator-message.pb.h \
-    getpbdata.h \
-    data_structures.h
+    data_structures.h \
+    pbdata.h
 
 FORMS    += mainwindow.ui
 

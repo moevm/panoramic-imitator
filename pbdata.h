@@ -1,15 +1,15 @@
-#ifndef GETPBDATA_H
-#define GETPBDATA_H
+#ifndef PBDATA_H
+#define PBDATA_H
 
 #include <iostream>
 #include <fstream>
 #include "data_structures.h"
 #include "protobuf/panoramic-imitator-message.pb.h"
 
-class GetPBData
+class PBData
 {
 public:
-    GetPBData();
+    PBData();
     bool readData();
     bool writeData();
     Angles getAngles();
@@ -21,4 +21,4 @@ private:
     Angles angles;
 };
 
-#endif // GETPBDATA_H
+#endif // PBDATA_H
