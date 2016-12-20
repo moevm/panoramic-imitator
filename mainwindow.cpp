@@ -18,6 +18,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+/**
+ * @brief MainWindow::keyPressEvent обрабатывает нажатия клавиш клавиатуры
+ * @param key - событие нажатия клавиши
+ */
 void MainWindow::keyPressEvent(QKeyEvent* key)
 {
     emit keyPressSignal(key);

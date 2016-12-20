@@ -6,7 +6,12 @@
 #include <stdio.h>
 #include <math.h>
 #include "pbdata.h"
-
+/**
+ * @brief PanoramicImage::sphere создаёт сферическое панорамное изображение
+ * @param r - радиус сферы
+ * @param nx - количество четырёхугольников по горизонтали
+ * @param ny - количество четырёхугольников по вертикали
+ */
 void PanoramicImage::sphere(double r, int nx, int ny)
 {
     int ix, iy;
@@ -52,10 +57,16 @@ PanoramicImage::PanoramicImage(QWidget *parent): QGLWidget(parent)
 {
     xRot=yRot=0;
 }
+/**
+ * @brief PanoramicImage::initializeGL устанавливает цвет фона в чёрный
+ */
 void PanoramicImage::initializeGL()
 {
     glClearColor(0, 0, 0, 1);
 }
+/**
+ * @brief PanoramicImage::paintGL меняет направление взгляда камеры
+ */
 void PanoramicImage::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -96,10 +107,19 @@ void PanoramicImage::paintGL()
     glRotatef(-90, 1, 0, 0);
     sphere(1.5, 100, 100);
 }
+/**
+ * @brief PanoramicImage::resizeGL растягивает изображение на весь виджет
+ * @param w - ширина виджета
+ * @param h - высота виджета
+ */
 void PanoramicImage::resizeGL(int w, int h)
 {
     glViewport(0, 0, h, h);
 }
+/**
+ * @brief PanoramicImage::rotate_up увеличивает вертикальный угол
+ *      поворота камеры на 1 градус
+ */
 void PanoramicImage::rotate_up()
 {
     xRot++;
@@ -107,6 +127,10 @@ void PanoramicImage::rotate_up()
         xRot=180;
     this->update();
 }
+/**
+ * @brief PanoramicImage::rotate_down уменьшает вертикальный угол
+ *      поворота камеры на 1 градус
+ */
 void PanoramicImage::rotate_down()
 {
     xRot--;
@@ -114,6 +138,10 @@ void PanoramicImage::rotate_down()
         xRot=0;
     this->update();
 }
+/**
+ * @brief PanoramicImage::rotate_left увеличивает горизонтальный угол
+ *      поворота камеры на 1 градус
+ */
 void PanoramicImage::rotate_left()
 {
     yRot++;
@@ -121,6 +149,10 @@ void PanoramicImage::rotate_left()
         yRot-=360;
     this->update();
 }
+/**
+ * @brief PanoramicImage::rotate_right уменьшает горизонтальный угол
+ *      поворота камеры на 1 градус
+ */
 void PanoramicImage::rotate_right()
 {
     yRot--;
@@ -128,16 +160,26 @@ void PanoramicImage::rotate_right()
         yRot+=360;
     this->update();
 }
+/**
+ * @brief PanoramicImage::set_xRot устанавливает значение вертикального угла
+ * @param rot - угол в градусах
+ */
 void PanoramicImage::set_xRot(QString rot)
 {
     xRot = rot.toDouble();
 }
-
+/**
+ * @brief PanoramicImage::set_yRot устанавливает значение горизонтального угла
+ * @param rot - угол в градусах
+ */
 void PanoramicImage::set_yRot(QString rot)
 {
     yRot = rot.toDouble();
 }
-
+/**
+ * @brief PanoramicImage::keyPressSlot обрабатывает нажатия клавиш клавиатуры
+ * @param key - событие нажатия клавиши
+ */
 void PanoramicImage::keyPressSlot(QKeyEvent* key)
 {
     switch (key->key())
@@ -159,6 +201,11 @@ void PanoramicImage::keyPressSlot(QKeyEvent* key)
         break;
     }
 }
+/**
+ * @brief PanoramicImage::mousePressEvent устанавливает фокус на виджет при нажатии
+ *      на него левой кнопкой мыши
+ * @param event - событие нажатия кнопки мыши
+ */
 void PanoramicImage::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)

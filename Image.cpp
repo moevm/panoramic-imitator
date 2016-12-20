@@ -1,6 +1,10 @@
 #include "Image.h"
 #include "stb_image.h"
 #include "stdlib.h"
+/**
+ * @brief Image::LoadImage выполняет загрузку изображения из файла
+ * @param filename - путь к файлу
+ */
 void Image::LoadImage(char *filename)
 {
     int n;
