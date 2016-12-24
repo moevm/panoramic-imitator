@@ -6,7 +6,11 @@ ImageWindow::ImageWindow(QWidget *parent) :
     ui(new Ui::ImageWindow)
 {
     ui->setupUi(this);
-    QPixmap Pixmap("image.jpg");
+    QString appPath = QApplication::applicationDirPath();
+    QString imagePath = appPath + "/image.jpg";
+    qDebug(imagePath.toLatin1());
+    QFile::copy(":/images/res/image.jpg", imagePath.toLatin1());
+    QPixmap Pixmap(":/images/res/image.jpg");
     QSize imageSize = Pixmap.size();
     QSize labelSize = ui->label->size();
     if (imageSize.height()>labelSize.height() || imageSize.width()>labelSize.width())

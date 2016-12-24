@@ -37,3 +37,6 @@ FORMS    += \
 
 LIBS +=-lglut -lGL -lGLU \
      -lprotobuf
+
+RESOURCES += \
+    resources.qrc
