@@ -26,7 +26,7 @@ ImageWindow::~ImageWindow()
  */
 void ImageWindow::on_OpenPanoramicImage_clicked()
 {
-    PanoramicImageWindow *window=new PanoramicImageWindow(ui->xRot_textbox->text().toFloat(),
-                                                          ui->yRot_textbox->text().toFloat());
+    PanoramicImageWindow *window=new PanoramicImageWindow(ui->yRot_textbox->text().toFloat(),
+                                                          ui->xRot_textbox->text().toFloat());
     window->show();
 }
