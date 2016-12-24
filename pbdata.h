@@ -16,9 +16,9 @@ public:
     void setAngles(Angles angles);
 private:
     bool parseMSGFromFile();
-    void anglesShortener();
     panoramicImitator::Message message;
     Angles angles;
+    void anglesShortener();
 };
 
 #endif // PBDATA_H

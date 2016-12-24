@@ -12,9 +12,11 @@ class PanoramicImageWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit PanoramicImageWindow(QWidget *parent = 0);
+    explicit PanoramicImageWindow(float yRot, float xRot, QWidget *parent = 0);
     ~PanoramicImageWindow();
-
+    void keyPressEvent(QKeyEvent* key);
+signals:
+    void keyPressSignal(QKeyEvent* key);
 private:
     Ui::PanoramicImageWindow *ui;
 };

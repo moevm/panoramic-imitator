@@ -11,6 +11,7 @@ void PBData::setAngles(Angles angles)
 {
     this->angles.horAngle = angles.horAngle;
     this->angles.vertAngle = angles.vertAngle;
+    anglesShortener();
 }
 
 bool PBData::parseMSGFromFile()
@@ -23,7 +24,6 @@ bool PBData::parseMSGFromFile()
     }
     return 0;
 }
-
 bool PBData::readData()
 {
     if (!parseMSGFromFile())
@@ -49,12 +49,15 @@ bool PBData::writeData()
 }
 void PBData::anglesShortener()
 {
-    if (angles.vertAngle < -360.0 || angles.vertAngle > 360.0)
-        angles.vertAngle = angles.vertAngle - (angles.vertAngle / 360.0) * 360.0;
-    if (angles.horAngle < -360.0 || angles.horAngle > 360.0)
-        angles.horAngle = angles.horAngle - (angles.horAngle / 360.0) * 360.0;
+    while(angles.vertAngle<0)
+        angles.vertAngle+=360;
+    while(angles.vertAngle>180)
+        angles.vertAngle-=360;
+    while(angles.horAngle<-180)
+        angles.horAngle+=360;
+    while(angles.horAngle>180)
+        angles.horAngle-=360;
 }
-
 Angles PBData::getAngles()
 {
     anglesShortener();

@@ -213,10 +213,20 @@ void PanoramicImage::mousePressEvent(QMouseEvent *event)
 }
 GLfloat PanoramicImage::get_xRot()
 {
+    while(xRot<0)
+        xRot+=360;
+    while(xRot>180)
+        xRot-=360;
+    if((xRot<0)||(xRot>180))
+        xRot=0;
     return xRot;
 }
 GLfloat PanoramicImage::get_yRot()
 {
+    while(yRot<-180)
+        yRot+=360;
+    while(yRot>180)
+        yRot-=360;
     return yRot;
 }
 void PanoramicImage::showPanorama()
