@@ -1,4 +1,4 @@
-#include "ImageLabel.h"
+#include "inc/ImageLabel.h"
 
 ImageLabel::ImageLabel(QWidget *parent): QLabel(parent)
 {

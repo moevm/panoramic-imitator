@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "inc/mainwindow.h"
 #include <QApplication>
 #include <GL/glut.h>
 int main(int argc, char *argv[])

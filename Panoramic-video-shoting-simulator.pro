@@ -12,33 +12,33 @@ TARGET = Panoramic-video-shoting-simulator
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-    stb_image.c \
-    Image.cpp \
-    PanoramicImage.cpp \
-    protobuf/panoramic-imitator-message.pb.cc \
-    pbdata.cpp \
-    image_window.cpp \
-    panoramic_image_window.cpp \
-    mainwindow.cpp \
-    ImageLabel.cpp
+SOURCES += src/main.cpp\
+    src/stb_image.c \
+    src/Image.cpp \
+    src/PanoramicImage.cpp \
+    src/protobuf/panoramic-imitator-message.pb.cc \
+    src/pbdata.cpp \
+    src/image_window.cpp \
+    src/panoramic_image_window.cpp \
+    src/mainwindow.cpp \
+    src/ImageLabel.cpp
 
 HEADERS  += \
-    stb_image.h \
-    Image.h \
-    PanoramicImage.h \
-    protobuf/panoramic-imitator-message.pb.h \
-    data_structures.h \
-    pbdata.h \
-    image_window.h \
-    panoramic_image_window.h \
-    mainwindow.h \
-    ImageLabel.h
+    inc/stb_image.h \
+    inc/Image.h \
+    inc/PanoramicImage.h \
+    inc/protobuf/panoramic-imitator-message.pb.h \
+    inc/data_structures.h \
+    inc/pbdata.h \
+    inc/image_window.h \
+    inc/panoramic_image_window.h \
+    inc/mainwindow.h \
+    inc/ImageLabel.h
 
 FORMS    += \
-    image_window.ui \
-    panoramic_image_window.ui \
-    mainwindow.ui
+    ui/image_window.ui \
+    ui/panoramic_image_window.ui \
+    ui/mainwindow.ui
 
 LIBS +=-lglut -lGL -lGLU \
      -lprotobuf

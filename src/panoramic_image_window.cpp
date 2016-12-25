@@ -1,4 +1,4 @@
-#include "panoramic_image_window.h"
+#include "inc/panoramic_image_window.h"
 #include "ui_panoramic_image_window.h"
 
 PanoramicImageWindow::PanoramicImageWindow(float yRot, float xRot, QWidget *parent) :

@@ -1,11 +1,11 @@
-#include "PanoramicImage.h"
+#include "inc/PanoramicImage.h"
 #include <QDebug>
 #include <QMouseEvent>
 #include <GL/glut.h>
-#include "stb_image.h"
+#include "inc/stb_image.h"
 #include <stdio.h>
 #include <math.h>
-#include "pbdata.h"
+#include "inc/pbdata.h"
 /**
  * @brief PanoramicImage::sphere создаёт сферическое панорамное изображение
  * @param r - радиус сферы

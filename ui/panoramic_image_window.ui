@@ -82,7 +82,7 @@
   <customwidget>
    <class>PanoramicImage</class>
    <extends>QWidget</extends>
-   <header>PanoramicImage.h</header>
+   <header>inc/PanoramicImage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

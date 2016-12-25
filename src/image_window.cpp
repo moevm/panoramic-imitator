@@ -1,6 +1,6 @@
-#include "panoramic_image_window.h"
+#include "inc/panoramic_image_window.h"
 #include "ui_image_window.h"
-#include "image_window.h"
+#include "inc/image_window.h"
 ImageWindow::ImageWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ImageWindow)
