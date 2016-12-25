@@ -18,8 +18,6 @@ SOURCES += src/main.cpp\
     src/PanoramicImage.cpp \
     src/protobuf/panoramic-imitator-message.pb.cc \
     src/pbdata.cpp \
-    src/image_window.cpp \
-    src/panoramic_image_window.cpp \
     src/mainwindow.cpp \
     src/ImageLabel.cpp
 
@@ -30,14 +28,10 @@ HEADERS  += \
     inc/protobuf/panoramic-imitator-message.pb.h \
     inc/data_structures.h \
     inc/pbdata.h \
-    inc/image_window.h \
-    inc/panoramic_image_window.h \
     inc/mainwindow.h \
     inc/ImageLabel.h
 
 FORMS    += \
-    ui/image_window.ui \
-    ui/panoramic_image_window.ui \
     ui/mainwindow.ui
 
 LIBS +=-lglut -lGL -lGLU \

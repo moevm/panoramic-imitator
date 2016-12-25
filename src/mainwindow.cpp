@@ -47,6 +47,12 @@ void MainWindow::keyPressEvent(QKeyEvent* key)
     ui->label->set_yRot(yRot);
     ui->xRot_textbox->setText(xRot);
     ui->yRot_textbox->setText(yRot);
+    if((key->key()==Qt::Key_Up)||(key->key()==Qt::Key_Down)||(key->key()==Qt::Key_Left)
+            ||(key->key()==Qt::Key_Right)||(key->key()==Qt::Key_Space))
+    {
+        ui->xRot_label->setText("Текущее\n значение: "+QString(xRot));
+        ui->yRot_label->setText("Текущее\n значение: "+QString(yRot));
+    }
 }
 /**
  * @brief MainWindow::on_Apply_clicked изменяет панораму в соотвествии
@@ -65,4 +71,6 @@ void MainWindow::on_Apply_clicked()
     ui->label->set_yRot(yRot);
     ui->xRot_textbox->setText(xRot);
     ui->yRot_textbox->setText(yRot);
+    ui->xRot_label->setText("Текущее\n значение: "+QString(xRot));
+    ui->yRot_label->setText("Текущее\n значение: "+QString(yRot));
 }
