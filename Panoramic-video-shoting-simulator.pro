@@ -19,7 +19,9 @@ SOURCES += main.cpp\
     protobuf/panoramic-imitator-message.pb.cc \
     pbdata.cpp \
     image_window.cpp \
-    panoramic_image_window.cpp
+    panoramic_image_window.cpp \
+    mainwindow.cpp \
+    ImageLabel.cpp
 
 HEADERS  += \
     stb_image.h \
@@ -29,11 +31,17 @@ HEADERS  += \
     data_structures.h \
     pbdata.h \
     image_window.h \
-    panoramic_image_window.h
+    panoramic_image_window.h \
+    mainwindow.h \
+    ImageLabel.h
 
 FORMS    += \
     image_window.ui \
-    panoramic_image_window.ui
+    panoramic_image_window.ui \
+    mainwindow.ui
 
 LIBS +=-lglut -lGL -lGLU \
      -lprotobuf
+
+RESOURCES += \
+resources.qrc

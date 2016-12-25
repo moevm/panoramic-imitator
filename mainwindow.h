@@ -14,6 +14,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void keyPressEvent(QKeyEvent* key);
+signals:
+    void keyPressSignal(QKeyEvent* key);
+    void applyPressSignal();
+private slots:
+    void on_Apply_clicked();
 
 private:
     Ui::MainWindow *ui;

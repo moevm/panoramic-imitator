@@ -2,6 +2,8 @@
 #define IMAGE_WINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QDir>
 
 namespace Ui {
 class ImageWindow;

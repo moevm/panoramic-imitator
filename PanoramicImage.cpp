@@ -125,7 +125,7 @@ void PanoramicImage::rotate_up()
     xRot++;
     if(xRot>180)
         xRot=180;
-    this->update();
+    this->QGLWidget::update();
 }
 /**
  * @brief PanoramicImage::rotate_down уменьшает вертикальный угол
@@ -136,7 +136,7 @@ void PanoramicImage::rotate_down()
     xRot--;
     if(xRot<0)
         xRot=0;
-    this->update();
+    this->QGLWidget::update();
 }
 /**
  * @brief PanoramicImage::rotate_left увеличивает горизонтальный угол
@@ -147,7 +147,7 @@ void PanoramicImage::rotate_left()
     yRot++;
     while(yRot>180)
         yRot-=360;
-    this->update();
+    this->QGLWidget::update();
 }
 /**
  * @brief PanoramicImage::rotate_right уменьшает горизонтальный угол
@@ -158,7 +158,7 @@ void PanoramicImage::rotate_right()
     yRot--;
     while(yRot<-180)
         yRot+=360;
-    this->update();
+    this->QGLWidget::update();
 }
 /**
  * @brief PanoramicImage::set_xRot устанавливает значение вертикального угла
@@ -202,6 +202,13 @@ void PanoramicImage::keyPressSlot(QKeyEvent* key)
     }
 }
 /**
+ * @brief PanoramicImage::applyPressSlot обновляет виджет при нажатии кнопики "Применить"
+ */
+void PanoramicImage::applyPressSlot()
+{
+    this->update();
+}
+/**
  * @brief PanoramicImage::mousePressEvent устанавливает фокус на виджет при нажатии
  *      на него левой кнопкой мыши
  * @param event - событие нажатия кнопки мыши
@@ -209,8 +216,11 @@ void PanoramicImage::keyPressSlot(QKeyEvent* key)
 void PanoramicImage::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
-        this->setFocus();
+        this->QGLWidget::setFocus();
 }
+/**
+ * @brief PanoramicImage::get_xRot возвращает значение угла поворота вокруг горизонтальной оси
+ */
 GLfloat PanoramicImage::get_xRot()
 {
     while(xRot<0)
@@ -221,6 +231,9 @@ GLfloat PanoramicImage::get_xRot()
         xRot=0;
     return xRot;
 }
+/**
+ * @brief PanoramicImage::get_yRot возвращает значение угла поворота вокруг вертикальной оси
+ */
 GLfloat PanoramicImage::get_yRot()
 {
     while(yRot<-180)
@@ -233,7 +246,7 @@ void PanoramicImage::showPanorama()
 {
     xRot = (GLfloat)data.getAngles().horAngle;
     yRot = (GLfloat)data.getAngles().vertAngle;
-    this->update();
+    this->QGLWidget::update();
 }
 void PanoramicImage::getPBDataAndShowPanorama()
 {

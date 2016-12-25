@@ -33,6 +33,7 @@ public:
 public slots:
     void keyPressSlot(QKeyEvent* key);
     void getPBDataAndShowPanorama();
+    void applyPressSlot();
 };
 
 #endif // PANORAMICIMAGE_H
