@@ -10,6 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
                ui->widget, SLOT(keyPressSlot(QKeyEvent*)));
     QObject::connect(this, SIGNAL(applyPressSignal()),
                ui->widget, SLOT(applyPressSlot()));
+
+    QString appPath = QApplication::applicationDirPath();
+    QString imagePath = appPath + "/image.jpg";
+    qDebug(imagePath.toLatin1());
+    QFile::copy(":/images/res/image.jpg", imagePath.toLatin1());
+
     ui->widget->LoadImage("image.jpg");
     ui->label->LoadImage("image.jpg");
     QObject::connect(this, SIGNAL(keyPressSignal(QKeyEvent*)),
