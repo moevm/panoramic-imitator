@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include "data_structures.h"
-#include "protobuf/panoramic-imitator-message.pb.h"
+#include "src/protobuf/panoramic-imitator-message.pb.h"
 
 class PBData
 {

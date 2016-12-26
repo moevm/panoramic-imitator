@@ -1,19 +1,43 @@
-cmake_minimum_required(VERSION 3.7.1)
-project (Panoramic-video-shoting-simulator)
+cmake_minimum_required(VERSION 3.0.2)
+project(Panoramic-video-shoting-simulator)
 
-set (CMAKE_INCLUDE_CURRENT_DIR ON)
-set (CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC TRUE)
+set(CMAKE_AUTOUIC TRUE)
 
-find_package (Qt5Widgets)
+find_package(Qt5Widgets REQUIRED)
 
-set (HEADERS stb_image.h Image.h PanoramicImage.h protobuf/panoramic-imitator-message.pb.h data_structures.h pbdata.h image_window.h panoramic_image_window.h mainwindow.h ImageLabel.h)
+find_package(Qt5OpenGL)
+find_package(OpenGL REQUIRED)
+find_package(Protobuf REQUIRED)
+find_package(GLUT REQUIRED)
 
-set (SRC_LIST stb_image.c Image.cpp PanoramicImage.cpp protobuf/panoramic-imitator-message.pb.cc pbdata.cpp image_window.cpp panoramic_image_window.cpp mainwindow.cpp ImageLabel.cpp)
+set (HEADERS 
+    inc/stb_image.h 
+    inc/Image.h 
+    inc/PanoramicImage.h 
+    inc/data_structures.h 
+    inc/pbdata.h 
+    inc/mainwindow.h 
+    inc/ImageLabel.h)
 
-set (UI image_window.ui panoramic_image_window.ui mainwindow.ui)
+set (SRC
+    src/stb_image.c 
+    src/Image.cpp 
+    src/PanoramicImage.cpp 
+    src/pbdata.cpp 
+    src/mainwindow.cpp 
+    src/ImageLabel.cpp
+    src/mainwindow.ui
+    src/main.cpp)
 
-set (RESOURCES resources.qrc)
+set(RESOURCES resources.qrc)
 
-add_executable (${Panoramic-video-shoting-simulator} ${SRC_LIST} ${HEADERS} ${UI} ${RESOURCES})
+qt5_add_resources(UI_RESOURCES resources.qrc)
 
-target_link_libraries (Panoramic-video-shoting-simulator Qt5::Widgets)
+file(GLOB ProtoFiles "${CMAKE_CURRENT_SOURCE_DIR}/src/protobuf/*.proto")
+PROTOBUF_GENERATE_CPP(ProtoSources ProtoHeaders ${ProtoFiles})
+
+include_directories(${OPENGL_INCLUDE_DIRS})
+add_executable(${PROJECT_NAME} ${SRC} ${HEADERS} ${RESOURCES} ${ProtoSources} ${ProtoHeaders} ${UI_RESOURCES})
+target_link_libraries(${PROJECT_NAME} Qt5::Widgets Qt5::OpenGL ${OPENGL_LIBRARIES} ${PROTOBUF_LIBRARY} ${GLUT_LIBRARIES})

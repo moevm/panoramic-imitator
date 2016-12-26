@@ -12,30 +12,32 @@ TARGET = Panoramic-video-shoting-simulator
 TEMPLATE = app
 
 
-SOURCES += src/main.cpp\
-    src/stb_image.c \
-    src/Image.cpp \
-    src/PanoramicImage.cpp \
-    src/protobuf/panoramic-imitator-message.pb.cc \
-    src/pbdata.cpp \
-    src/mainwindow.cpp \
-    src/ImageLabel.cpp
-
-HEADERS  += \
-    inc/stb_image.h \
-    inc/Image.h \
-    inc/PanoramicImage.h \
-    inc/protobuf/panoramic-imitator-message.pb.h \
-    inc/data_structures.h \
-    inc/pbdata.h \
-    inc/mainwindow.h \
-    inc/ImageLabel.h
-
-FORMS    += \
-    ui/mainwindow.ui
 
 LIBS +=-lglut -lGL -lGLU \
      -lprotobuf
 
 RESOURCES += \
 resources.qrc
+
+HEADERS += \
+    src/protobuf/panoramic-imitator-message.pb.h \
+    inc/data_structures.h \
+    inc/Image.h \
+    inc/ImageLabel.h \
+    inc/mainwindow.h \
+    inc/PanoramicImage.h \
+    inc/pbdata.h \
+    inc/stb_image.h
+
+SOURCES += \
+    src/protobuf/panoramic-imitator-message.pb.cc \
+    src/Image.cpp \
+    src/ImageLabel.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/PanoramicImage.cpp \
+    src/pbdata.cpp \
+    src/stb_image.c
+
+FORMS += \
+    src/mainwindow.ui

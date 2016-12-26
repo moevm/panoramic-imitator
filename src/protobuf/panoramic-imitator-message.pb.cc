@@ -2,7 +2,7 @@
 // source: panoramic-imitator-message.proto
 
 #define INTERNAL_SUPPRESS_PROTOBUF_FIELD_DEPRECATION
-#include "../../inc/protobuf/panoramic-imitator-message.pb.h"
+#include "src/protobuf/panoramic-imitator-message.pb.h"
 
 #include <algorithm>
 
