@@ -206,6 +206,7 @@ void PanoramicImage::keyPressSlot(QKeyEvent* key)
  */
 void PanoramicImage::applyPressSlot()
 {
+	getPBDataAndShowPanorama();
     this->update();
 }
 /**
