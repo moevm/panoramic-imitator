@@ -12,7 +12,9 @@ find_package(OpenGL REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(GLUT REQUIRED)
 
-set (HEADERS 
+set(PROTO_SRC ${PROTO_SRC} ${PROJECT_SOURCE_DIR}/src-gen)
+
+set (HEADERS
     inc/stb_image.h 
     inc/Image.h 
     inc/PanoramicImage.h 
@@ -35,7 +37,7 @@ set(RESOURCES resources.qrc)
 
 qt5_add_resources(UI_RESOURCES resources.qrc)
 
-file(GLOB ProtoFiles "${CMAKE_CURRENT_SOURCE_DIR}/src/protobuf/*.proto")
+file(GLOB ProtoFiles "${CMAKE_CURRENT_SOURCE_DIR}/panoramic-imitator-message.proto")
 PROTOBUF_GENERATE_CPP(ProtoSources ProtoHeaders ${ProtoFiles})
 
 include_directories(${OPENGL_INCLUDE_DIRS})
