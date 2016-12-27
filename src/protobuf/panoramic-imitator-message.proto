@@ -1,7 +1,0 @@
-package panoramicImitator;
-
-message Message
-{
-	optional double horAngle = 1;
-	optional double vertAngle = 2;
-}
