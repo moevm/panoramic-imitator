@@ -140,6 +140,16 @@
 значение: 0</string>
     </property>
    </widget>
+   <widget class="QLineEdit" name="frameSize_textbox">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>400</y>
+      <width>131</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <customwidgets>

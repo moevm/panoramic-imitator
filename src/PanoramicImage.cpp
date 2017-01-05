@@ -55,7 +55,8 @@ void PanoramicImage::sphere(double r, int nx, int ny)
 }
 PanoramicImage::PanoramicImage(QWidget *parent): QGLWidget(parent)
 {
-    xRot=yRot=0;
+	xRot=yRot = 0;
+	frameSize = 90;
 }
 /**
  * @brief PanoramicImage::initializeGL устанавливает цвет фона в чёрный
@@ -84,9 +85,11 @@ void PanoramicImage::paintGL()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glLoadIdentity();
-    //gluPerspective(60.0, 1, 0, 100.0);
-    double phi=yRot*M_PI/180;
-    double teta=(90-xRot)*M_PI/180;
+
+	gluPerspective(frameSize, 1, 50, 0); //(60.0, 1, 0, 100.0);
+
+	double phi=yRot*M_PI/180;
+	double teta=(90-xRot)*M_PI/180;
     double x0=0.5*sin(teta)*cos(phi);
     double y0=0.5*sin(teta)*sin(phi);
     double z0=0.5*cos(teta);
@@ -160,6 +163,22 @@ void PanoramicImage::rotate_right()
         yRot+=360;
     this->QGLWidget::update();
 }
+void PanoramicImage::changeFrameSize()
+{
+	if (frameSize < 1)
+	{frameSize = 1;}
+	else if (frameSize > 90)
+	{frameSize = 90;}
+
+	gluPerspective(frameSize, 1, 50, 0);
+	this->update();
+}
+
+void PanoramicImage::set_frameSize(QString size)
+{
+	frameSize = size.toDouble();
+}
+
 /**
  * @brief PanoramicImage::set_xRot устанавливает значение вертикального угла
  * @param rot - угол в градусах
@@ -243,6 +262,11 @@ GLfloat PanoramicImage::get_yRot()
         yRot-=360;
     return yRot;
 }
+GLfloat PanoramicImage::get_frameSize()
+{
+	return frameSize;
+}
+
 void PanoramicImage::showPanorama()
 {
     xRot = (GLfloat)data.getAngles().horAngle;
